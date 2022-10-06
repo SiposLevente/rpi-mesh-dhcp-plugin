@@ -7,50 +7,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Status</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="icon" type="image/x-icon" href="../../../favicon.png">
     <script src="../../../scripts/jquery/jquery.jsm"></script>
-    <script src="../"></script>
+    <script src="scripts/dhcp_script.js"></script>
 </head>
 
 <body>
-                <h2>DHCP Service</h2>
-                <div>DHCP service is <span id="dhcp-status"></span><button onclick="toggle_dhcp()" type="button">Toggle!</button></div>
-                    <form action="./scripts/apply_dhcp.php" method="post">
-                        <label for="interfaces">Select Interface to configure DHCP on: </label>
-                        <select id="dhcp_selector" name="interfaces" id="dhcp_interfaces">
-                        </select>
-                        <br>
-                        <label for="leash_time">Default leash time (seconds): </label>
-                        <input id="leash_time" placeholder="600" value="600" size="5" name="leash_time" type="number" required>
-                        <br>
-                        <label for="max_leash_time">Max leash time (seconds): </label>
-                        <input id="leash_time" placeholder="7200" value="7200" size="5" name="max_leash_time" type="number" required>
-                        <br>
-                        <label for="authoritive">Authoritive: </label>
-                        <input id="authoritive" name="authoritive" type="checkbox" checked>
-                        <br>
 
-                        <label for="subnet">Subnet: </label>
-                        <input name="subnet" placeholder="xxx.xxx.xxx.xxx" type="text" minlength="7" maxlength="15" size="12" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" required>
-                        <br>
+    <div class="container">
+        <div class="toppane">
+            <img src="../../../icon.png" class="top_img" alt="">
+            <p class="top_txt">System Status</p>
+        </div>
+        <div class="leftpane">
+            <a href="../../../index.html" class="side_btn"><span class="side_btn_span">System Status</span></a>
+            <a href="../../../interface.html" class="side_btn"><span class="side_btn_span">Interface configuration</span></a>
+            <a href="../../../configuration.html" class="side_btn"><span class="side_btn_span">Node Configuration</span></a>
+            <a href="../../../settings.php" class="side_btn"><span class="side_btn_span">System settings</span></a>
+            <a href="../../../plugins.html" class="selected_menu"><span class="side_btn_span">Plugins</span></a>
+        </div>
 
-                        <label for="netmask">Netmask: </label>
-                        <input name="netmask" value="255.255.255.0" placeholder="xxx.xxx.xxx.xxx" type="text" minlength="7" maxlength="15" size="12" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" required>
-                        <br>
+        <div class="middlepane">
+            <h3>DHCP Service</h3>
+            <div>DHCP service is <span id="dhcp-status"></span><button onclick="toggle_dhcp()" type="button">Toggle!</button></div>
+            <form action="./scripts/apply_dhcp.php" method="post">
+                <label for="interfaces">Select Interface to configure DHCP on: </label>
+                <select id="dhcp_selector" name="interfaces" id="dhcp_interfaces">
+                </select>
+                <br>
+                <label for="leash_time">Default leash time (seconds): </label>
+                <input id="leash_time" placeholder="600" value="600" size="5" name="leash_time" type="number" required>
+                <br>
+                <label for="max_leash_time">Max leash time (seconds): </label>
+                <input id="leash_time" placeholder="7200" value="7200" size="5" name="max_leash_time" type="number" required>
+                <br>
+                <label for="authoritive">Authoritive: </label>
+                <input id="authoritive" name="authoritive" type="checkbox" checked>
+                <br>
 
-                        <label for="range-1">Address range: </label>
-                        <input name="range-1" placeholder="xxx.xxx.xxx.xxx" type="text" minlength="7" maxlength="15" size="12" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" required>
-                        <label for="range-2"> - </label>
-                        <input name="range-2" placeholder="xxx.xxx.xxx.xxx" type="text" minlength="7" maxlength="15" size="12" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" required>
-                        <br>
+                <label for="subnet">Subnet: </label>
+                <input name="subnet" placeholder="xxx.xxx.xxx.xxx" type="text" minlength="7" maxlength="15" size="12" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" required>
+                <br>
 
-                        <label for="router">Router: </label>
-                        <input name="router" placeholder="xxx.xxx.xxx.xxx" type="text" minlength="7" maxlength="15" size="12" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" required>
-                        <br>
-                        <label for="dns1">DNS 1: </label>
-                        <input name="dns1" placeholder="xxx.xxx.xxx.xxx" type="text" minlength="7" maxlength="15" size="12" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" required>
-                        <br>
-                        <label for="dns2">DNS 2: </label>
-                        <input name="dns2" placeholder="xxx.xxx.xxx.xxx" type="text" minlength="7" maxlength="15" size="12" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" required>
-</form>
+                <label for="netmask">Netmask: </label>
+                <input name="netmask" value="255.255.255.0" placeholder="xxx.xxx.xxx.xxx" type="text" minlength="7" maxlength="15" size="12" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" required>
+                <br>
+
+                <label for="range-1">Address range: </label>
+                <input name="range-1" placeholder="xxx.xxx.xxx.xxx" type="text" minlength="7" maxlength="15" size="12" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" required>
+                <label for="range-2"> - </label>
+                <input name="range-2" placeholder="xxx.xxx.xxx.xxx" type="text" minlength="7" maxlength="15" size="12" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" required>
+                <br>
+
+                <label for="router">Router: </label>
+                <input name="router" placeholder="xxx.xxx.xxx.xxx" type="text" minlength="7" maxlength="15" size="12" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" required>
+                <br>
+                <label for="dns1">DNS 1: </label>
+                <input name="dns1" placeholder="xxx.xxx.xxx.xxx" type="text" minlength="7" maxlength="15" size="12" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" required>
+                <br>
+                <label for="dns2">DNS 2: </label>
+                <input name="dns2" placeholder="xxx.xxx.xxx.xxx" type="text" minlength="7" maxlength="15" size="12" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" required>
+
+
+                <br>
+                <input id="submit_button" type="submit" value="Save">
+            </form>
+        </div>
+    </div>
 </body>
+
+</html>
