@@ -45,7 +45,6 @@ $.ajax({
     });
 
 function toggle_dhcp() {
-    var interface = interfaces[selector.selectedIndex].interface;
     $.ajax({
             method: "POST",
             url: "./scripts/toggle_dhcp.php",

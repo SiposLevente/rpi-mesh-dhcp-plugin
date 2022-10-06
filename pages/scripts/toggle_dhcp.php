@@ -1,3 +1,3 @@
 <?php
-shell_exec("/etc/node-scripts/toggle_dnsmasq.sh")
+shell_exec("sudo /etc/node-scripts/toggle_dnsmasq.sh")
 ?>
