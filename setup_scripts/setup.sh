@@ -15,7 +15,7 @@ echo "Copying scripts /etc/node-scripts/"
 mkdir -p /etc/node-scripts/
 cp -r ./node_scripts/* /etc/node-scripts/
 
-SCRIPTS="none_scripts/*"
+SCRIPTS="node_scripts/*"
 for file in $SCRIPTS
 do
   is_in_file=`grep "www-data ALL = NOPASSWD: /etc/node-scripts/${file##*/}" /etc/sudoers`
