@@ -11,9 +11,15 @@ apt install dnsmasq
 systemctl stop dnsmasq
 systemctl disable dnsmasq
 
+echo "Copying scripts /etc/node-scripts/"
+mkdir -p /etc/node-scripts/
+cp -r ./node_scripts/* /etc/node-scripts/
+
 SCRIPTS="none_scripts/*"
 for file in $SCRIPTS
 do
-  echo "www-data ALL = NOPASSWD: /etc/node-scripts/${file##*/}" >> /etc/sudoers
+  is_in_file=`grep "www-data ALL = NOPASSWD: /etc/node-scripts/${file##*/}" /etc/sudoers`
+  if [[ $is_in_file != "www-data ALL = NOPASSWD: /etc/node-scripts/${file##*/}" ]];then
+    echo "www-data ALL = NOPASSWD: /etc/node-scripts/${file##*/}" >> /etc/sudoers
+  fi
 done
-
