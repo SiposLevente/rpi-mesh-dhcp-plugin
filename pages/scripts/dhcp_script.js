@@ -2,11 +2,11 @@ const IP_PLACEHOLDER = "xxx.xxx.xxx.xxx";
 var interfaces = [];
 
 $.ajax({
-        method: "POST",
-        url: "../../../scripts/interfaceIp.php",
-    })
-    .done(function(response) {
-        var data_entries = response.replaceAll(/<.?p>|<.?span>/gm, '').split('\n').filter(function(element) {
+    method: "POST",
+    url: "../../../scripts/interfaceIp.php",
+})
+    .done(function (response) {
+        var data_entries = response.replaceAll(/<.?p>|<.?span>/gm, '').split('\n').filter(function (element) {
             return element != ""
         });
         var selector = document.getElementById("dhcp_selector");
@@ -33,22 +33,23 @@ $.ajax({
     });
 
 
-$.ajax({
+get_dnsmasq_status();
+function get_dnsmasq_status() {
+    $.ajax({
         method: "POST",
         url: "./scripts/get_dnsmasq_status.php",
     })
-    .done(function(response) {
-    status_placeholder= document.getElementById("dhcp-status");
-        status_placeholder.innerHTML = response;
-
-
-    });
+        .done(function (response) {
+            status_placeholder = document.getElementById("dhcp-status");
+            status_placeholder.innerHTML = response;
+        });
+}
 
 function toggle_dhcp() {
     $.ajax({
-            method: "POST",
-            url: "./scripts/toggle_dhcp.php",
-            data: {}
-        })
-        .done(function(response) {});
+        method: "POST",
+        url: "./scripts/toggle_dhcp.php",
+        data: {}
+    })
+        .done(function (response) { get_dnsmasq_status(); });
 }
