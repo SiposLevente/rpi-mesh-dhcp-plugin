@@ -10,3 +10,4 @@ fi
 if [[ $8 != "null" ]];then
 echo "server=$8" >> /etc/dnsmasq.conf
 fi
+systemctl restart dnsmasq.service
