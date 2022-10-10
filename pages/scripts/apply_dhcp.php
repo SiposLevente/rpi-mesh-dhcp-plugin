@@ -9,15 +9,15 @@ $dns1 = $_POST["dns1"];
 $dns2 = $_POST["dns2"];
 
 if ($router == "") {
-    $router = "null"
+    $router = "null";
 }
 
 if ($dns1 == "") {
-    $dns1 = "null"
+    $dns1 = "null";
 }
 
 if ($dns2 == "") {
-    $dns2 = "null"
+    $dns2 = "null";
 }
 
 shell_exec("sudo /etc/node-scripts/apply_dnsmasq.sh $interfaces $lease_time $netmask $range1 $range2 $router $dns1 dns1");
