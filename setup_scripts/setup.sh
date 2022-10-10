@@ -7,7 +7,7 @@ fi
 
 
 echo "Installing needed packages..."
-apt install dnsmasq
+apt install -y dnsmasq
 systemctl stop dnsmasq
 systemctl disable dnsmasq
 
