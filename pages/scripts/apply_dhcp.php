@@ -20,7 +20,7 @@ if ($dns2 == "") {
     $dns2 = "null";
 }
 
-shell_exec("sudo /etc/node-scripts/apply_dnsmasq.sh $interfaces $lease_time $netmask $range1 $range2 $router $dns1 dns1");
+shell_exec("sudo /etc/node-scripts/apply_dnsmasq.sh $interfaces $lease_time $netmask $range1 $range2 $router $dns1 $dns2");
 
 header('Location: ../settings.html');
 ?>
