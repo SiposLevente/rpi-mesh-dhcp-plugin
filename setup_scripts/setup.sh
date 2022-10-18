@@ -17,7 +17,7 @@ systemctl disable dnsmasq
 
 echo "Copying scripts /etc/node-scripts/"
 mkdir -p /etc/node-scripts/
-cp -r node_script_location /etc/node-scripts/
+cp -r $node_script_location /etc/node-scripts/
 
 SCRIPTS=$node_script_location
 for file in $SCRIPTS
