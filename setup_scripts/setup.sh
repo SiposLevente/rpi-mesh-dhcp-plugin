@@ -4,11 +4,9 @@ if [[ `whoami` != "root" ]];then
     exit 1
 fi
 
-if [[ $1 == "local" ]];then
-  node_script_location="node_scripts/*"
-else
-  node_script_location="/var/www/html/plugins/rpi-mesh-dhcp-plugin/setup_scripts/node_scripts/*"
-fi
+cd `dirname $0`
+
+node_script_location="node_scripts/*"
 
 echo "Installing needed packages..."
 apt install -y dnsmasq
@@ -19,8 +17,8 @@ echo "Copying scripts /etc/node-scripts/"
 mkdir -p /etc/node-scripts/
 cp -r $node_script_location /etc/node-scripts/
 
-SCRIPTS=$node_script_location
-for file in $SCRIPTS
+
+for file in $node_script_location
 do
   is_in_file=`grep "www-data ALL = NOPASSWD: /etc/node-scripts/${file##*/}" /etc/sudoers`
   if [[ $is_in_file != "www-data ALL = NOPASSWD: /etc/node-scripts/${file##*/}" ]];then
