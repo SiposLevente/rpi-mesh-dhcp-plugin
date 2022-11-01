@@ -2,6 +2,6 @@
 "pluginName": "DHCP plugin",
 "version": "1.0.0",
 "author": "SiposLevente",
-"short_description":"A sample plugin that adds dhcp capabilities to the node",
-"long_description":"Allows the users to configure this node as a dhcp server. Used mainly on gateway routers! This plugin was tested on Raspberry OS based systems!"
+"short_description":"A simple plugin that adds dhcp capabilities to the node",
+"long_description":"Implements a DHCP server. Used mainly on gateway routers! This plugin was tested on Raspberry OS based systems!"
 }
